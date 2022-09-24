@@ -28,6 +28,7 @@ function onOpenImage(event){
   instanceGallery.show();
   }
 }
+
 function onKeyDown(event) {
   if (event.key === "Escape") {
     instanceGallery.close();
