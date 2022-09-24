@@ -1,10 +1,8 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-console.log(galleryItems);
 const galleryContainer = document.querySelector(".gallery");
 const galleryMarkup = createImageCardsMarkup(galleryItems);
-console.log(galleryMarkup);
 galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
 
 function createImageCardsMarkup(galleryItems) {
@@ -15,6 +13,7 @@ function createImageCardsMarkup(galleryItems) {
       href="${original}">
       <img class="gallery__image" 
       src="${preview}" 
+      alt="${description}"
       title="${description}" />
     </a>`;
     })
