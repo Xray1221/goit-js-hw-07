@@ -7,27 +7,30 @@ galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
 
 
 galleryContainer.addEventListener('click', onOpenImage);
+let instanceGallery = null;
 
 function onOpenImage(event){
   event.preventDefault();
   if(event.target.nodeName === 'IMG'){
     const imageSource = event.target.dataset["source"];
-    const instance = basicLightbox.create(`<img src="${imageSource}"/>`,
+    instanceGallery = basicLightbox.create(`<img src="${imageSource}"/>`,
     {
       onShow: (instance) => {
-        window.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
-            instance.close();
-          }
-        }, {
-          once: true
-        });
+        window.addEventListener("keydown", onKeyDown);
         instance.element().querySelector("img").onclick = instance.close;
+      },
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onKeyDown);
       }
     }
   );
 
-  instance.show();
+  instanceGallery.show();
+  }
+}
+function onKeyDown(event) {
+  if (event.key === "Escape") {
+    instanceGallery.close();
   }
 }
 
