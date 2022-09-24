@@ -14,16 +14,16 @@ function onOpenImage(event){
   if(event.target.nodeName === 'IMG'){
     const imageSource = event.target.dataset["source"];
     instanceGallery = basicLightbox.create(`<img src="${imageSource}"/>`,
-    {
-      onShow: (instance) => {
-        window.addEventListener("keydown", onKeyDown);
-        instance.element().querySelector("img").onclick = instance.close;
-      },
-      onClose: (instance) => {
-        window.removeEventListener("keydown", onKeyDown);
+      {
+        onShow: (instance) => {
+          window.addEventListener("keydown", onKeyDown);
+          instance.element().querySelector("img").onclick = instance.close;
+        },
+        onClose: (instance) => {
+          window.removeEventListener("keydown", onKeyDown);
+        }
       }
-    }
-  );
+    );
 
   instanceGallery.show();
   }
